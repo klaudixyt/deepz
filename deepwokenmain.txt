@@ -1,0 +1,404 @@
+	local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+	local Window = Library.CreateLib("Deepwoken Hub", "DarkTheme")
+
+	--INFO
+	local Info = Window:NewTab("Info")
+	local Info = Info:NewSection("Thanks for purchasing Deepwoken hub!")
+
+	-- MAIN
+	local Main = Window:NewTab("Main")
+	local MainSection = Main:NewSection("Main")
+
+	--ESP
+	local Esp = Window:NewTab("ESP")
+	local Esp = Esp:NewSection("Will add item esp soon!")
+
+	Esp:NewButton("Player ESP", "See players where they are!", function()
+		loadstring(game:HttpGet("https://www.toptal.com/developers/hastebin/raw/ujigupumog"))()
+	end)
+
+	MainSection:NewToggle("Teleport To All Players (ban risk)", "Teleports to every player, use autoattack with this", function(state)
+		if state then
+			_G.tp = true
+			while _G.tp do
+				for i,v in pairs(game:GetService'Players':GetPlayers()) do
+					if v.Name ~= game:GetService'Players'.LocalPlayer.Name then
+						repeat
+							wait(0.05)
+							game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame
+							game:GetService'Players'.LocalPlayer.Character:FindFirstChildOfClass'Tool':Activate()
+						until v.Character.Humanoid.Health == 0
+					end
+				end
+			end
+		else
+			_G.tp = false
+		end
+	end)
+	
+	MainSection:NewButton("Auto Parry", "Defends you automatically", function()
+		loadstring(game:HttpGet("https://pastebin.com/raw/WjR6bffM"))()
+	end)
+	
+	MainSection:NewButton("No Fall DMG", "Can't get damage by falling", function()
+		loadstring(game:HttpGet("https://pastebin.com/raw/VpLv5X6g"))()
+	end)
+
+
+	MainSection:NewButton("AutoAttack (x)", "Make sure to equip weapon first", function()
+		toggle = false
+		game.Players.LocalPlayer:GetMouse().KeyDown:connect(function(key)
+			if toggle then
+				repeat
+					mouse1click()
+					wait(.1)
+				until toggle == false
+			end
+		end)
+
+		game.Players.LocalPlayer:GetMouse().KeyDown:connect(function(key)
+
+			if key == "x" then 
+				toggle = not toggle
+			end
+		end)
+	end)
+
+	MainSection:NewButton("Intelligence farm", "Farming intelligence", function()
+		loadstring(game:HttpGet(('https://pastebin.com/raw/xy026H0C'),true))()
+		wait(0.1)
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Introvert1337/RobloxReleases/master/Scripts/Deepwoken_Intelligence_Farm.lua"))()
+	end)
+
+	MainSection:NewButton("Click Destroy", "Ctrl + click to destroy", function()
+		local Plr = game:GetService("Players").LocalPlayer
+		local Mouse = Plr:GetMouse()
+
+		Mouse.Button1Down:connect(function()
+			if not game:GetService("UserInputService"):IsKeyDown(Enum.KeyCode.LeftControl) then return end
+			if not Mouse.Target then return end
+			Mouse.Target:Destroy()
+		end)
+	end)
+
+	MainSection:NewButton("Anti AFK", "Prevent you to get kicked from game when idle", function()
+		local VirtualUser=game:service'VirtualUser'
+		game:service'Players'.LocalPlayer.Idled:connect(function()
+			VirtualUser:CaptureController()
+			VirtualUser:ClickButton2(Vector2.new())
+		end)
+	end)
+
+	-- PLAYER
+	local Player = Window:NewTab("Local Player")
+	local PlayerSection = Player:NewSection("Local Player")
+	
+	PlayerSection:NewButton("INF Jump", "Makes you jump as many times as you want!", function()
+		_G.infinjump = true
+
+		local Player = game:GetService("Players").LocalPlayer
+		local Mouse = Player:GetMouse()
+		Mouse.KeyDown:connect(function(k)
+			if _G.infinjump then
+				if k:byte() == 32 then
+					Humanoid = game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+					Humanoid:ChangeState("Jumping")
+					wait(0.1)
+					Humanoid:ChangeState("Seated")
+				end
+			end
+		end)
+
+		local Player = game:GetService("Players").LocalPlayer
+		local Mouse = Player:GetMouse()
+		Mouse.KeyDown:connect(function(k)
+			k = k:lower()
+			if k == "f" then
+				if _G.infinjump == true then
+					_G.infinjump = false
+				else
+					_G.infinjump = true
+				end
+			end
+		end)
+	end)
+	
+	PlayerSection:NewButton("INF Jump Off", "Turns off infinite jump", function()
+		_G.infinjump = false
+	end)
+
+	PlayerSection:NewButton("NoClip (n)", "Go through stuff", function()
+		local Player = game.Players.LocalPlayer
+		local Mouse  = Player:GetMouse();
+
+		Mouse.KeyDown:connect(function(key)
+			if key == "n" then
+				local plr = game:GetService("Players")local Z=game:GetService("Players").LocalPlayer;function Torso(plr)if plr.Character then if plr.Character:FindFirstChild('UpperTorso')then return plr.Character.UpperTorso else return plr.Character.Torso end end end;if Clip==true then Clip=false;return end;Clip=true;game:GetService("RunService").Stepped:connect(function()Torso(Z).CanCollide=not Clip;Z.Character.Head.CanCollide=not Clip;Z.Character.HumanoidRootPart.CanCollide=not Clip;if Z.Character.UpperTorso then Z.Character.LowerTorso.CanCollide=not Clip end end)Z.Character.RightFoot.Touched:connect(function(_)Torso(Z).CanCollide=not Clip;Z.Character.Head.CanCollide=not Clip;Z.Character.HumanoidRootPart.CanCollide=not Clip;if Z.Character.UpperTorso then Z.Character.LowerTorso.CanCollide=not Clip end end)Z.Character.LeftFoot.Touched:connect(function(a0)Torso(Z).CanCollide=not Clip;Z.Character.Head.CanCollide=not Clip;Z.Character.HumanoidRootPart.CanCollide=not Clip;if Z.Character.UpperTorso then Z.Character.LowerTorso.CanCollide=not Clip end end)Z.Character.RightLowerLeg.Touched:connect(function(a1)Torso(Z).CanCollide=not Clip;Z.Character.Head.CanCollide=not Clip;Z.Character.HumanoidRootPart.CanCollide=not Clip;if Z.Character.UpperTorso then Z.Character.LowerTorso.CanCollide=not Clip end end)Z.Character.LeftLowerLeg.Touched:connect(function(a2)Torso(Z).CanCollide=not Clip;Z.Character.Head.CanCollide=not Clip;Z.Character.HumanoidRootPart.CanCollide=not Clip;if Z.Character.UpperTorso then Z.Character.LowerTorso.CanCollide=not Clip end end)Z.Character.RightHand.Touched:connect(function(a3)Torso(Z).CanCollide=not Clip;Z.Character.Head.CanCollide=not Clip;Z.Character.HumanoidRootPart.CanCollide=not Clip;if Z.Character.UpperTorso then Z.Character.LowerTorso.CanCollide=not Clip end end)Z.Character.LeftHand.Touched:connect(function(a4)Torso(Z).CanCollide=not Clip;Z.Character.Head.CanCollide=not Clip;Z.Character.HumanoidRootPart.CanCollide=not Clip;if Z.Character.UpperTorso then Z.Character.LowerTorso.CanCollide=not Clip end end)Z.Character.Head.Touched:connect(function(a5)Torso(Z).CanCollide=not Clip;Z.Character.Head.CanCollide=not Clip;Z.Character.HumanoidRootPart.CanCollide=not Clip;if Z.Character.UpperTorso then Z.Character.LowerTorso.CanCollide=not Clip end end)Z.Character.Torso.Touched:connect(function(a6)Torso(Z).CanCollide=not Clip;Z.Character.Head.CanCollide=not Clip;Z.Character.HumanoidRootPart.CanCollide=not Clip;if Z.Character.UpperTorso then Z.Character.LowerTorso.CanCollide=not Clip end end)
+			end
+		end)
+	end)
+	
+	--Movement
+	local Movement = Window:NewTab("Movement")
+	local Movement = Movement:NewSection("Movement")
+	
+	Movement:NewButton("Fly Speed 1", "Makes you fly on speed 1", function()
+		loadstring(game:HttpGet("https://www.toptal.com/developers/hastebin/raw/wawonekofa"))()
+	end)
+
+	Movement:NewButton("Fly Speed 2", "Makes you fly on speed 2", function()
+		loadstring(game:HttpGet("https://www.toptal.com/developers/hastebin/raw/fosizusipi"))()
+	end)
+
+	Movement:NewButton("Fly Speed 3", "Makes you fly on speed 3", function()
+		loadstring(game:HttpGet("https://www.toptal.com/developers/hastebin/raw/muqahanipe"))()
+	end)
+	
+	Movement:NewButton("Walkspeed", "Changes the walkspeed to selected speed", function()
+		local ws = 32 -- walkspeed to tween to
+		local timetotween = 1 -- how long it takes to tween to the specified walkspeed in seconds.
+		game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.Humanoid,TweenInfo.new(timetotween),{WalkSpeed = ws}):Play()
+	end)
+
+	Movement:NewButton("Set Walkspeed to Normal", "Changes the walkspeed to normal", function()
+		local ws = 16 -- walkspeed to tween to
+		local timetotween = 1 -- how long it takes to tween to the specified walkspeed in seconds.
+		game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.Humanoid,TweenInfo.new(timetotween),{WalkSpeed = ws}):Play()
+	end)
+
+	Movement:NewButton("JumpPower", "Changes the walkspeed to normal", function()
+		local p = game.Players.LocalPlayer.Character.HumanoidRootPart
+		local yeah_this_is_yeah = Instance.new("BodyForce")
+		yeah_this_is_yeah.Parent = p
+		yeah_this_is_yeah.Force = Vector3.new(0, 2000, 0)
+	end)
+
+	Movement:NewButton("Set JumpPower to Normal", "Changes the jumppower to normal", function()
+		local p = game.Players.LocalPlayer.Character.HumanoidRootPart
+		local yeah_this_is_yeah = Instance.new("BodyForce")
+		yeah_this_is_yeah.Parent = p
+		yeah_this_is_yeah.Force = Vector3.new(0, 0, 0)
+	end)
+	
+	--Visual
+	local Visual = Window:NewTab("Visual")
+	local Visual = Visual:NewSection("Visual Effects")
+
+	Visual:NewButton("No Blur", "Removes blur", function()
+		while wait() do
+			for _,blz in pairs(game.Lighting:children()) do
+				if blz:IsA('BlurEffect') then
+					blz:remove()
+				end
+			end
+		end
+	end)
+
+	Visual:NewButton("No Fog", "Removes fog", function()
+		while true do
+			wait()
+			game.Lighting.FogEnd = 1000000
+			wait()
+		end
+		wait(0.1)
+		loadstring(game:HttpGet(('https://pastebin.com/raw/xy026H0C'),true))()
+	end)
+	
+	Visual:NewButton("Fullbright", "Removes fog and adds brightness", function()
+		if not _G.FullBrightExecuted then
+
+			_G.FullBrightEnabled = false
+
+			_G.NormalLightingSettings = {
+				Brightness = game:GetService("Lighting").Brightness,
+				ClockTime = game:GetService("Lighting").ClockTime,
+				FogEnd = game:GetService("Lighting").FogEnd,
+				GlobalShadows = game:GetService("Lighting").GlobalShadows,
+				Ambient = game:GetService("Lighting").Ambient
+			}
+
+			game:GetService("Lighting"):GetPropertyChangedSignal("Brightness"):Connect(function()
+				if game:GetService("Lighting").Brightness ~= 1 and game:GetService("Lighting").Brightness ~= _G.NormalLightingSettings.Brightness then
+					_G.NormalLightingSettings.Brightness = game:GetService("Lighting").Brightness
+					if not _G.FullBrightEnabled then
+						repeat
+							wait()
+						until _G.FullBrightEnabled
+					end
+					game:GetService("Lighting").Brightness = 1
+				end
+			end)
+
+			game:GetService("Lighting"):GetPropertyChangedSignal("ClockTime"):Connect(function()
+				if game:GetService("Lighting").ClockTime ~= 12 and game:GetService("Lighting").ClockTime ~= _G.NormalLightingSettings.ClockTime then
+					_G.NormalLightingSettings.ClockTime = game:GetService("Lighting").ClockTime
+					if not _G.FullBrightEnabled then
+						repeat
+							wait()
+						until _G.FullBrightEnabled
+					end
+					game:GetService("Lighting").ClockTime = 12
+				end
+			end)
+
+			game:GetService("Lighting"):GetPropertyChangedSignal("FogEnd"):Connect(function()
+				if game:GetService("Lighting").FogEnd ~= 786543 and game:GetService("Lighting").FogEnd ~= _G.NormalLightingSettings.FogEnd then
+					_G.NormalLightingSettings.FogEnd = game:GetService("Lighting").FogEnd
+					if not _G.FullBrightEnabled then
+						repeat
+							wait()
+						until _G.FullBrightEnabled
+					end
+					game:GetService("Lighting").FogEnd = 786543
+				end
+			end)
+
+			game:GetService("Lighting"):GetPropertyChangedSignal("GlobalShadows"):Connect(function()
+				if game:GetService("Lighting").GlobalShadows ~= false and game:GetService("Lighting").GlobalShadows ~= _G.NormalLightingSettings.GlobalShadows then
+					_G.NormalLightingSettings.GlobalShadows = game:GetService("Lighting").GlobalShadows
+					if not _G.FullBrightEnabled then
+						repeat
+							wait()
+						until _G.FullBrightEnabled
+					end
+					game:GetService("Lighting").GlobalShadows = false
+				end
+			end)
+
+			game:GetService("Lighting"):GetPropertyChangedSignal("Ambient"):Connect(function()
+				if game:GetService("Lighting").Ambient ~= Color3.fromRGB(178, 178, 178) and game:GetService("Lighting").Ambient ~= _G.NormalLightingSettings.Ambient then
+					_G.NormalLightingSettings.Ambient = game:GetService("Lighting").Ambient
+					if not _G.FullBrightEnabled then
+						repeat
+							wait()
+						until _G.FullBrightEnabled
+					end
+					game:GetService("Lighting").Ambient = Color3.fromRGB(178, 178, 178)
+				end
+			end)
+
+			game:GetService("Lighting").Brightness = 1
+			game:GetService("Lighting").ClockTime = 12
+			game:GetService("Lighting").FogEnd = 786543
+			game:GetService("Lighting").GlobalShadows = false
+			game:GetService("Lighting").Ambient = Color3.fromRGB(178, 178, 178)
+
+			local LatestValue = true
+			spawn(function()
+				repeat
+					wait()
+				until _G.FullBrightEnabled
+				while wait() do
+					if _G.FullBrightEnabled ~= LatestValue then
+						if not _G.FullBrightEnabled then
+							game:GetService("Lighting").Brightness = _G.NormalLightingSettings.Brightness
+							game:GetService("Lighting").ClockTime = _G.NormalLightingSettings.ClockTime
+							game:GetService("Lighting").FogEnd = _G.NormalLightingSettings.FogEnd
+							game:GetService("Lighting").GlobalShadows = _G.NormalLightingSettings.GlobalShadows
+							game:GetService("Lighting").Ambient = _G.NormalLightingSettings.Ambient
+						else
+							game:GetService("Lighting").Brightness = 1
+							game:GetService("Lighting").ClockTime = 12
+							game:GetService("Lighting").FogEnd = 786543
+							game:GetService("Lighting").GlobalShadows = false
+							game:GetService("Lighting").Ambient = Color3.fromRGB(178, 178, 178)
+						end
+						LatestValue = not LatestValue
+					end
+				end
+			end)
+		end
+
+		_G.FullBrightExecuted = true
+		_G.FullBrightEnabled = not _G.FullBrightEnabled
+	end)
+	
+	Visual:NewButton("Free Camera (to disable reset char)", "Let's you explore the map without goin anywhere", function()
+		local cam = game.Workspace.CurrentCamera
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 0
+		z = Instance.new('Part', game.Workspace)
+		z.Anchored = true
+		z.CFrame = cam.CFrame
+		z.Transparency = 1
+
+		Move = CFrame.new(0, 0, 0)
+		local m = 1.5
+		local n = -m
+
+		userInputService = game:GetService("UserInputService")
+		userInputService.InputBegan:connect(function(inputObject)
+			if inputObject.KeyCode == Enum.KeyCode.A then
+				Move = Move * CFrame.new(-m, 0, 0)
+			elseif inputObject.KeyCode == Enum.KeyCode.D then
+				Move = Move * CFrame.new(m, 0, 0)
+			elseif inputObject.KeyCode == Enum.KeyCode.W then
+				Move = Move * CFrame.new(0, 0, -m)
+			elseif inputObject.KeyCode == Enum.KeyCode.S then
+				Move = Move * CFrame.new(0, 0, m)
+			elseif inputObject.KeyCode == Enum.KeyCode.E then
+				Move = Move * CFrame.new(0, m, 0)
+			elseif inputObject.KeyCode == Enum.KeyCode.Q then
+				Move = Move * CFrame.new(0, -m, 0)
+			end
+		end)
+
+		userInputService.InputEnded:connect(function(inputObject)
+			if inputObject.KeyCode == Enum.KeyCode.A then
+				Move = Move * CFrame.new(-n, 0, 0)
+			elseif inputObject.KeyCode == Enum.KeyCode.D then
+				Move = Move * CFrame.new(n, 0, 0)
+			elseif inputObject.KeyCode == Enum.KeyCode.W then
+				Move = Move * CFrame.new(0, 0, -n)
+			elseif inputObject.KeyCode == Enum.KeyCode.S then
+				Move = Move * CFrame.new(0, 0, n)
+			elseif inputObject.KeyCode == Enum.KeyCode.E then
+				Move = Move * CFrame.new(0, n, 0)
+			elseif inputObject.KeyCode == Enum.KeyCode.Q then
+				Move = Move * CFrame.new(0, -n, 0)
+			end
+		end)
+
+		repeat wait() until cam.CameraSubject.Name == "Humanoid"
+		cam.CameraSubject = z
+		cam.CameraType = 'Custom'
+
+		while wait() do
+			local rotation = cam.CFrame - cam.CFrame.p
+			z.CFrame = (rotation + z.CFrame.p)
+			z.CFrame = z.CFrame * Move
+		end
+	end)
+	
+	Visual:NewButton("Mod Detection", "Send you a message when mod/admin joins", function()
+        local stafflist = {
+			[151239872] = true,
+			[167825083] = true,
+			[17126105] = true,
+			[10717875] = true,
+			[633527] = true,
+			[10190020] = true,
+			[9144458] = true,
+			[1362173342] = true,
+			[51453069] = true,
+			[28163453] = true,
+			[5840316] = true,
+			[341792] = true
+		}
+
+		game:GetService('Players').PlayerAdded:Connect(function(player)
+			if stafflist[player.UserId] then 
+				game.StarterGui:SetCore("SendNotification", {
+					Title = "Staff Detected!"; -- the title (ofc)
+					Text = "Rejoin or leave game!!"; -- what the text says (ofc)
+					Duration = 15; -- how long the notification should in secounds
+				})
+			end
+		end)
+	end)
+
+	--Credits
+	local Credits = Window:NewTab("Credits")
+	local Credits = Credits:NewSection("Script made by alfa#2144")
+	Credits:NewButton("Discord Invite", "Copies discord invite", function()
+		setclipboard("https://discord.com/invite/2uSkKWQGsx")
+	end)
