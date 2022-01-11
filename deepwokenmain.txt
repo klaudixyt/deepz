@@ -138,6 +138,10 @@
 		end)
 	end)
 	
+	PlayerSection:NewButton("Reset Character", "Resets your char", function()
+		game.Players.LocalPlayer.Character.Humanoid.Health = 0
+	end)
+	
 	--Movement
 	local Movement = Window:NewTab("Movement")
 	local Movement = Movement:NewSection("Movement")
